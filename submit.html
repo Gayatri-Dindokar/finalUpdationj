@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: darkseagreen;
+        }
+        
+        #otp {
+            margin-left: 40px;
+            margin-top: 50px;
+            padding: 10px;
+            color: black;
+            border: 2px solid black;
+            border-radius: 12px;
+            font-size: x-large;
+            width: 10%;
+        }
+        
+        #otp:hover {
+            background-color: thistle;
+        }
+        
+        #validate {
+            margin-left: 40px;
+            margin-top: 20px;
+            padding: 7px;
+            color: black;
+            border: 2px solid black;
+            border-radius: 12px;
+            font-size: x-large;
+            width: 13%;
+        }
+        
+        #validate:hover {
+            background-color: thistle;
+        }
+    </style>
+
+</head>
+
+<body>
+
+
+    <h1>
+        Dear <span id="result"></span><br>
+    </h1>
+
+    <br>
+    <H2>Thank you for your inquiry</H2>
+    <h3>A 4-digit verification number has been sent to your email:<span id="result_email"></span></h3>
+    <h3>enter it in the following box and submit for confirmation</h3>
+
+
+
+
+
+    <form id="otpForm">
+
+        <input type="text" id="otp" name="otp" required placeholder="Enter OTP "><br>
+        <label id="lblone"></label><br><br>
+
+        <input type="button" id="validate" value="Validate" onfocus="validateOTP()">
+    </form>
+
+    <script>
+        //to generate otp
+
+        function generateRandomNumber() {
+            return Math.floor(1000 + Math.random() * 9000);
+        }
+
+        const verificationNumber = generateRandomNumber();
+        // here we get the otp in console log
+        console.log('Verification Number:', verificationNumber);
+
+        // Counter for failed attempts
+
+        //only 3 attempt to varify
+        /* if otp is valid then page redirect to" http://pixel6.co/". */
+        var attempts = 0;
+
+        function validateOTP() {
+            const enteredOTP = document.getElementById('otp').value;
+            if (enteredOTP === verificationNumber.toString()) {
+                document.getElementById('otpForm').innerHTML = '<p>Validation Successful!</p>';
+                setTimeout(() => {
+                    window.location.href = 'https://pixel6.co/';
+                }, 3000);
+            } else {
+                attempts++;
+                if (attempts < 3) {
+                    alert("Invalid OTP! Please try again.");
+                    document.getElementById('otp').value = ""; // to clear the otp feild
+                    return false; //prevent form submission
+                } else {
+                    alert("Validation failed!");
+                    window.location.href = "http://pixel6.co/rgrgrrgrrt";
+                }
+
+            }
+        }
+
+
+
+
+        // will get fullName & email from index.html page
+        document.getElementById("result").innerHTML = localStorage.getItem("passValue");
+        document.getElementById("result_email").innerHTML = localStorage.getItem("passValuee");
+    </script>
+</body>
+
+</html>

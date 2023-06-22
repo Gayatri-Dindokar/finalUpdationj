@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Loan Application</title <link rel="stylesheet" href="submit.html">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <div class="main">
+        <div id="error"></div>
+        <form action="submit.html" name="frm" class="form" method="get" id="frmm">
+
+            <div class="con">
+                <h1>Loan Application Form</h1>
+
+                <input type="text" id="fullname" name="pname" required pattern="/^[A-Za-z\s]*$/" class="box" placeholder="Enter Your Name" oninput="conversion()"><br>
+                <!-- <label id="lbl" class="lableone"></label><br><br> -->
+                <span id="grab" class="lableone"></span><br><br>
+
+
+                <input type="email" id="email" name="pemail" required oninput="mail(this.value)" class="box" placeholder="Enter Email"><br>
+                <label id="mle" class="lableone"></label> <br><br>
+
+
+                <input type="text" id="pan" name="ppan" required oninput="pancard(this.value)" class="box" placeholder="Enter PAN Number"><br>
+                <label id="pann" class="lableone"></label> <br><br>
+
+
+
+
+                <input type="number" id="number" name="loanamount" required onkeypress="loanamt(this.value)" class="box" placeholder="Enter Loan Amount">
+                <br>
+
+
+
+                <label id="amt" class="lableone"></label> <br><br>
+                <span id="words"></span><br><br>
+
+
+                <button id="btn" onclick="getTxt()"><b>SUBMIT</b></button>
+
+            </div>
+
+        </form>
+        <div/>
+        <script src="loan.js"></script>
+
+</body>
+
+</html>
